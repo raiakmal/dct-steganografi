@@ -1,0 +1,26 @@
+KI
+
+Urutan files : 
+1. zigzag.py
+File ini berisi dua fungsi: zigzag() dan inverse_zigzag(). Fungsi ini berguna untuk menyusun ulang nilai-nilai matriks agar mudah diolah lebih lanjut, terutama dalam proses embed data di blok DCT. Zigzag membantu kita menelusuri nilai dari atas kiri ke kanan bawah secara diagonal, sehingga kita bisa memilih bagian koefisien penting lebih dulu. Ini sangat membantu dalam proses steganografi maupun kompresi.
+
+2. image_preparation.py
+Untuk menyiapkan struktur data gambar dalam format blok 8x8 yang diperlukan untuk proses steganografi berbasis transformasi seperti DCT.
+
+3. data_embedding.py
+File ini juga berisi dua fungsi utama yang digunakan dalam proses penyisipan dan ekstraksi data pada blok DCT dalam steganografi gambar. Secara keseluruhan, file ini mengatur proses menyisipkan bit informasi ke dalam transformasi citra, yaitu DCT, serta mengambilnya kembali. Ini adalah inti dari proses steganografi berbasis frekuensi.
+
+4. run_stego.py  ← (dieksekusi/di-run user untuk membuat gambar steganografi)
+Sebagai aplikasi utama untuk menyisipkan pesan rahasia ke dalam gambar menggunakan metode DCT. Gambar diubah ke format YCbCr, lalu blok-blok 8x8 dari komponen luminansi diproses dengan DCT. Bit pesan disisipkan ke koefisien hasil transformasi menggunakan pola zigzag, lalu dikembalikan ke gambar melalui inverse DCT. Hasilnya adalah gambar baru yang tampak sama, tapi berisi pesan tersembunyi.
+
+5. extract_stego.py ←  (dieksekusi/di-run user untuk mengekstark gambar steganografi)
+Untuk mengekstrak pesan rahasia dari gambar steganografi yang menggunakan transformasi DCT. Pengguna memilih gambar stego, lalu aplikasi akan mengurai komponen luminansi, mengaplikasikan DCT, dan mengekstrak data yang disisipkan melalui proses kuantisasi dan zigzag. Hasilnya, pesan yang disisipkan akan ditampilkan sebagai teks.
+
+Penjelasan libraries : 
+1. cv2 : OpenCV, untuk membaca/generate gambar dan manipulasi piksel.
+2. bitstring : Untuk manipulasi bit (bit-level embedding atau ekstraksi).
+3. struct: Untuk packing/unpacking data (mungkin buat metadata atau header).
+4. numpy : Operasi numerik, biasanya untuk matriks piksel.
+5. tkinter : Membuat GUI di Python.
+6. PIL : Menangani gambar untuk ditampilkan di Tkinter.
+7. zigzag : modul eksternal untuk zigzag scan DCT block.

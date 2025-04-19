@@ -31,7 +31,7 @@ def embed_encoded_data_into_DCT(encoded_bits, dct_blocks):
             curr_coeff = np.int32(current_dct_block[i])
             if (curr_coeff > 1):
                 curr_coeff = np.uint8(current_dct_block[i])
-                if (encoded_bits.pos == (len(encoded_bits) - 1)): data_complete = True; break
+                if (encoded_bits.pos == (len(encoded_bits))): data_complete = True; break
                 pack_coeff = bitstring.pack('uint:8', curr_coeff)
                 if (encoded_data_len.pos <= len(encoded_data_len) - 1): pack_coeff[-1] = encoded_data_len.read(1)
                 else: pack_coeff[-1] = encoded_bits.read(1)
